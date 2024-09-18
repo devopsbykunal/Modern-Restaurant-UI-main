@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kunal-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: kunal-app.local  # Custom domain (use an appropriate one or modify your `/etc/hosts` for testing)
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kunal-app-service  # The name of the service
+            port:
+              number: 80  # Service port
